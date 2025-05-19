@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Manager Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>Password Manager</h2>
+        <p>Admin Dashboard</p>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="active"><a href="#"><i class="fas fa-key"></i> Credentials</a></li>
+          <li><a href="#"><i class="fas fa-chart-bar"></i> Statistics</a></li>
+          <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <button id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+      </div>
+    </aside>
+    
+    <main class="content">
+      <header class="content-header">
+        <h1>Saved Credentials</h1>
+        <div class="search-container">
+          <input type="text" id="search-input" placeholder="Search by domain, username...">
+          <button id="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+      </header>
+      
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-key"></i></div>
+          <div class="stat-data">
+            <h3 id="total-credentials">0</h3>
+            <p>Total Credentials</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-globe"></i></div>
+          <div class="stat-data">
+            <h3 id="unique-domains">0</h3>
+            <p>Unique Websites</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="fas fa-calendar-day"></i></div>
+          <div class="stat-data">
+            <h3 id="new-this-week">0</h3>
+            <p>New This Week</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="filter-row">
+        <select id="domain-filter">
+          <option value="">All Domains</option>
+        </select>
+        <div class="pagination">
+          <button id="prev-page"><i class="fas fa-chevron-left"></i></button>
+          <span id="page-info">Page 1</span>
+          <button id="next-page"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+      
+      <div class="credentials-table-container">
+        <table class="credentials-table">
+          <thead>
+            <tr>
+              <th>Website</th>
+              <th>Username</th>
+              <th>Password</th>
+              <th>Date Saved</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="credentials-table-body">
+            <!-- Data will be populated by JavaScript -->
+          </tbody>
+        </table>
+        <div id="loading-indicator" class="loading">
+          <div class="spinner"></div>
+          <p>Loading credentials...</p>
+        </div>
+        <div id="empty-state" class="empty-state hidden">
+          <div class="empty-icon"><i class="fas fa-search"></i></div>
+          <p>No credentials found</p>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <!-- Password view modal -->
+  <div id="password-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2>View Password</h2>
+      <div class="password-container">
+        <p>Website: <span id="modal-website"></span></p>
+        <p>Username: <span id="modal-username"></span></p>
+        <div class="password-field">
+          <label>Password:</label>
+          <input type="text" id="modal-password" readonly>
+          <button id="copy-password"><i class="fas fa-copy"></i></button>
+        </div>
+        <p class="saved-on">Saved on: <span id="modal-date"></span></p>
+      </div>
+    </div>
+  </div>
+  
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
